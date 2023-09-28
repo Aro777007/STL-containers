@@ -1,1 +1,55 @@
-graegaeertttttttttttttttttttt
+
+#include <iostream>
+#include <string>
+using namespace std;
+const int MAX_SIZE = 50; // Maximum number of elements in the map
+
+class Map {
+private:
+    int keys[MAX_SIZE];
+    string values[MAX_SIZE];
+    int size;
+
+public:
+    Map() : size(0) {}
+
+    void insert(int key, const string& value) {
+        if (size < MAX_SIZE) {
+            keys[size] = key;
+            values[size] = value;
+            size++;
+        }
+        else {
+            cout << "Map is full" << endl;
+        }
+    }
+
+    string* find(int key) {
+        for (int i = 0; i < size; i++) {
+            if (keys[i] == key) {
+                return &values[i];
+            }
+        }
+        return nullptr;
+    }
+};
+
+int main() {
+    Map map;
+
+    map.insert(1, "One");
+    map.insert(2, "Two");
+    map.insert(3, "Three");
+
+    string* value = map.find(3);
+    if (value) 
+    {
+        cout << "Key 3 maps to: " << *value << endl;
+    }
+    else {
+        cout << "Key 3 not found." << std::endl;
+    }
+
+    return 0;
+}
+
